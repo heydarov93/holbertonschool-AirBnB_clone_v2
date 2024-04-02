@@ -146,7 +146,6 @@ class HBNBCommand(cmd.Cmd):
             return
 
         new_instance = HBNBCommand.classes[cls_name](**params)
-
         storage.new(new_instance)
 
         storage.save()

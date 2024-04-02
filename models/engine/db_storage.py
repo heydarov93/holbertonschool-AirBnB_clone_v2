@@ -25,7 +25,7 @@ class DBStorage:
     """DataBase Storage Engine"""
     __engine = None
     __session = None
-    __classes = {User, Place, State, City}
+    __classes = {User, Place, State, City, Review}
 
     def __init__(self):
         """Initializes the database engine."""

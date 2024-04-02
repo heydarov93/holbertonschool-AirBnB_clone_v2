@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from os import environ
-
-Base = declarative_base()
+from os import getenv
 
 
 class State(BaseModel, Base):
@@ -17,10 +15,10 @@ class State(BaseModel, Base):
 
     # for DBStorage
     # one to many
-    if environ("HBNB_TYPE_STORAGE") == "db":
+    if getenv("HBNB_TYPE_STORAGE") == "db":
         cities = relationship(
                                 "City",
-                                back_populates="states",
+                                back_populates="state",
                                 cascade="all, delete"
                                 )
     else:
@@ -30,6 +28,6 @@ class State(BaseModel, Base):
             from models.city import City
 
             all_cities = istorage.all(City)
-            cities_of_state = [v if v.state_id == self.id for k, v
+            cities_of_state = [v if v.state_id == self.id else "" for k, v
                                in all_cities.items()]
             return cities_of_state

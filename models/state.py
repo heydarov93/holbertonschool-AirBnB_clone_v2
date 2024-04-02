@@ -17,7 +17,7 @@ class State(BaseModel, Base):
     if getenv("HBNB_TYPE_STORAGE") == "db":
         cities = relationship(
                                 "City",
-                                back_populates="state",
+                                backref="state",
                                 cascade="all, delete"
                                 )
     else:
@@ -26,7 +26,7 @@ class State(BaseModel, Base):
             from models import storage
             from models.city import City
 
-            all_cities = istorage.all(City)
+            all_cities = storage.all(City)
             cities_of_state = [v if v.state_id == self.id else "" for k, v
                                in all_cities.items()]
             return cities_of_state

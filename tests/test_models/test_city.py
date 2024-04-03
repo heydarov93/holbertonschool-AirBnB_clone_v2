@@ -16,7 +16,7 @@ class TestCity(test_basemodel):
 
     def test_state_id(self):
         """Tests the type of state_id."""
-        new = self.value(city_id="test_city_id")
+        new = self.value(state_id="test_city_id")
         self.assertEqual(
             type(new.state_id),
             str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)

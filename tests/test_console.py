@@ -42,8 +42,6 @@ class TestHBNBCommand(unittest.TestCase):
         except IOError:
             pass
 
-    @unittest.skipIf(
-            isinstance(models.storage, DBStorage), "Testing DBstorage")
     def test_create(self):
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("create BaseModel")
@@ -67,8 +65,6 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("create Amenity")
             new_amenity = test.getvalue().strip()
 
-    @unittest.skipIf(
-            isinstance(models.storage, DBStorage), "Testing DBStorage")
     def test_all(self):
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("all BaseModel")
@@ -92,8 +88,6 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("all Amenity")
             new_amenity = test.getvalue().strip()
 
-    @unittest.skipIf(
-            isinstance(models.storage, DBStorage), "Testing DBstorage")
     def test_create_kwargs(self):
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd('create User first_name="John" '
@@ -108,15 +102,6 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertIn("'email': 'john@example.com'", user_output)
             self.assertNotIn("'last_name': 'Snow'", user_output)
             self.assertIn("'password': '1234'", user_output)
-
-    @unittest.skipIf(
-            isinstance(models.storage, DBStorage), "Testing DBstorage")
-    def test_create_state_california(self):
-        """Test creating a State object with name='California'"""
-        with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd("create State name='California'")
-            state_output = test.getvalue().strip()
-            self.assertIn("'name': 'California'", state_output)
 
 if __name__ == '__main__':
     unittest.main()

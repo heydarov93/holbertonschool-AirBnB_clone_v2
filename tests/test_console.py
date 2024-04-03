@@ -45,7 +45,7 @@ class TestHBNBCommand(unittest.TestCase):
             isinstance(models.storage, DBStorage), "Testing DBstorage")
     def test_create(self):
         with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd("create BaseModel")
+            self.HBNB.onecmd("create BaseMOdel")
             new_bm = test.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("create State")
@@ -70,7 +70,7 @@ class TestHBNBCommand(unittest.TestCase):
             isinstance(models.storage, DBStorage), "Testing DBStorage")
     def test_all(self):
         with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd("all BaseModel")
+            self.HBNB.onecmd("all BaseMOdel")
             new_bm = test.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("all State")
@@ -116,7 +116,7 @@ class TestBaseModel(unittest.TestCase):
         # Test scenario: Passing unexpected kwargs should raise KeyError
         with self.assertRaises(KeyError):
             # Passing unexpected key 'unexpected_key' to BaseModel
-            new_instance = BaseModel(unexpected_key="unexpected_value")
+            new_instance = BaseMOdel(unexpected_key="unexpected_value")
 
 
 if __name__ == '__main__':

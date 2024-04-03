@@ -41,7 +41,8 @@ class TestHBNBCommand(unittest.TestCase):
         except IOError:
             pass
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBstorage")
+    @unittest.skipIf(
+            isinstance(models.storage, DBStorage), "Testing DBstorage")
     def test_create(self):
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("create BaseMOdel")
@@ -65,7 +66,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("create Amenity")
             new_amenity = test.getvalue().strip()
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
+    @unittest.skipIf(
+            isinstance(models.storage, DBStorage), "Testing DBStorage")
     def test_all(self):
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("all BaseMOdel")
@@ -89,12 +91,13 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("all Amenity")
             new_amenity = test.getvalue().strip()
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBstorage")
+    @unittest.skipIf(
+            isinstance(models.storage, DBStorage), "Testing DBstorage")
     def test_create_kwargs(self):
         with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd('create User first_name="John" 
-                            email="john@example.com 
-                            password="1234"')
+            self.HBNB.onecmd('create User first_name="John" '
+                             'email="john@example.com '
+                             'password="1234"')
             new_user = test.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("all User")

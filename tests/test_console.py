@@ -45,7 +45,7 @@ class TestHBNBCommand(unittest.TestCase):
             isinstance(models.storage, DBStorage), "Testing DBstorage")
     def test_create(self):
         with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd("create BaseMOdel")
+            self.HBNB.onecmd("create BaseModel")
             new_bm = test.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("create State")
@@ -70,7 +70,7 @@ class TestHBNBCommand(unittest.TestCase):
             isinstance(models.storage, DBStorage), "Testing DBStorage")
     def test_all(self):
         with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd("all BaseMOdel")
+            self.HBNB.onecmd("all BaseModel")
             new_bm = test.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("all State")

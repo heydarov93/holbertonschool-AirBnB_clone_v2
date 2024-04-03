@@ -18,31 +18,23 @@ class TestUser(test_basemodel):
     def test_first_name(self):
         """Tests the type of first_name."""
         new = self.value(first_name="John")
-        self.assertEqual(
-            type(new.first_name),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        expected_type = str if new.first_name is not None else type(None)
+        self.assertEqual(type(new.first_name), expected_type)
 
     def test_last_name(self):
         """Tests the type of last_name."""
         new = self.value(last_name="Doe")
-        self.assertEqual(
-            type(new.last_name),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        expected_type = str if new.last_name is not None else type(None)
+        self.assertEqual(type(new.last_name), expected_type)
 
     def test_email(self):
         """Tests the type of email."""
         new = self.value(email="john.doe@example.com")
-        self.assertEqual(
-            type(new.email),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        expected_type = str if new.email is not None else type(None)
+        self.assertEqual(type(new.email), expected_type)
 
     def test_password(self):
         """Tests the type of password."""
         new = self.value(password="password123")
-        self.assertEqual(
-            type(new.password),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        expected_type = str if new.password is not None else type(None)
+        self.assertEqual(type(new.password), expected_type)

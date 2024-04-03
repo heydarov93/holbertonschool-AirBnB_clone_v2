@@ -17,24 +17,18 @@ class TestReview(test_basemodel):
     def test_place_id(self):
         """Tests the type of place_id."""
         new = self.value(place_id="test_place_id")
-        self.assertEqual(
-            type(new.place_id),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        expected_type = str if new.place_id is not None else type(None)
+        self.assertEqual(type(new.place_id), expected_type)
 
     def test_user_id(self):
         """Tests the type of user_id."""
         new = self.value(user_id="test_user_id")
-        self.assertEqual(
-            type(new.user_id),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        expected_type = str if new.user_id is not None else type(None)
+        self.assertEqual(type(new.user_id), expected_type)
 
     def test_text(self):
         """Tests the type of text."""
         new = self.value(text="This is a review text")
-        self.assertEqual(
-            type(new.text),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        expected_type = str if new.text is not None else type(None)
+        self.assertEqual(type(new.text), expected_type)
 

@@ -29,7 +29,7 @@ class TestHBNBCommand(unittest.TestCase):
         except IOError:
             pass
         del test_cls.HBNB
-        if type(models.storage) == DBStorage:
+        if isinstance(models.storage, DBStorage):
             models.storage._DBStorage__session.close()
 
     def setUp(self):
@@ -92,7 +92,9 @@ class TestHBNBCommand(unittest.TestCase):
     @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBstorage")
     def test_create_kwargs(self):
         with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd('create User first_name="John" email="john@example.com password="1234"')
+            self.HBNB.onecmd('create User first_name="John" 
+                            email="john@example.com 
+                            password="1234"')
             new_user = test.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("all User")

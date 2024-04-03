@@ -109,5 +109,15 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertIn("'password': '1234'", user_output)
 
 
+class TestBaseModel(unittest.TestCase):
+    """Unittesting the BaseModel class"""
+
+    def test_kwargs_one(self):
+        # Test scenario: Passing unexpected kwargs should raise KeyError
+        with self.assertRaises(KeyError):
+            # Passing unexpected key 'unexpected_key' to BaseModel
+            new_instance = BaseModel(unexpected_key="unexpected_value")
+
+
 if __name__ == '__main__':
     unittest.main()

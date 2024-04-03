@@ -1,9 +1,23 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Integer, Float, ForeignKey
+from sqlalchemy import Table, Column, String, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from os import getenv
+
+    place_amenity = Table("place_amenity", Base.metadata,
+                          Column(
+                                 "place_id",
+                                 String(60),
+                                 ForeignKey("places.id")
+                                 nullable=False
+                                 ),
+                          Column(
+                                 "amenity_id",
+                                 String(60),
+                                 ForeignKey("amenities.id"),
+                                 nullable=False
+                                 ))
 
 
 class Place(BaseModel, Base):
@@ -31,6 +45,8 @@ class Place(BaseModel, Base):
                                 backref="place",
                                 cascade="all, delete"
                                 )
+        amenities = relationship("Amenity", secondary=place_amenity,
+                                 viewonly=False, back_populates="place_amenities")
     else:
         @property
         def reviews(self):
@@ -41,3 +57,38 @@ class Place(BaseModel, Base):
             reviews_of_place = [v if v.place_id == self.id else "" for k, v
                                in all_reviews.items()]
             return reviews_of_place
+
+        @property
+        def amenities(self):
+            """
+            returns the list of Amenity instances based on the
+            attribute amenity_ids that contains all Amenity.id
+            linked to the Place
+            """
+            return self.amenity_ids
+
+        @amenities.setter
+        def amenities(self, obj=None)
+        """
+        Setter attribute amenities that handles append method for
+        adding an Amenity.id to the attribute amenity_ids
+        """
+        from models.amenity import Amenity
+        if type(obj) is Amenity and obj.id not in self.amenity_id:
+            self.amenity_ids.append(obj.id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -103,5 +103,6 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertNotIn("'last_name': 'Snow'", user_output)
             self.assertIn("'password': '1234'", user_output)
 
+
 if __name__ == '__main__':
     unittest.main()

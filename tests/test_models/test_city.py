@@ -1,29 +1,24 @@
 #!/usr/bin/python3
 """ """
-import os
-
-from models.city import City
 from tests.test_models.test_base_model import test_basemodel
+from models.city import City
 
 
-class TestCity(test_basemodel):
-    """Represents the tests for the City model."""
+class test_City(test_basemodel):
+    """ """
+
     def __init__(self, *args, **kwargs):
-        """Initializes the test class."""
+        """ """
         super().__init__(*args, **kwargs)
         self.name = "City"
         self.value = City
+        self.city1 = City(state_id="d80e0345-67eb-434a-b1e0-07783522124e",
+                          name="Baku")
 
     def test_state_id(self):
-        """Tests the type of state_id."""
-        new = self.value(state_id="test_city_id")
-        expected_type = str if new.state_id is not None else type(None)
-        self.assertEqual(type(new.state_id), expected_type)
-
+        """ """
+        self.assertEqual(type(self.city1.state_id), str)
 
     def test_name(self):
-        """Tests the type of name."""
-        new = self.value(name="Los Angeles")
-        expected_type = str if new.name is not None else type(None)
-        self.assertEqual(type(new.name), expected_type)
-
+        """ """
+        self.assertEqual(type(self.city1.name), str)

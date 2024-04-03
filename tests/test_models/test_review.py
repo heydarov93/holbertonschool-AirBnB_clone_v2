@@ -1,34 +1,29 @@
 #!/usr/bin/python3
 """ """
-import os
-
 from tests.test_models.test_base_model import test_basemodel
 from models.review import Review
 
 
-class TestReview(test_basemodel):
-    """Represents the tests for the Review model."""
+class test_review(test_basemodel):
+    """ """
+
     def __init__(self, *args, **kwargs):
-        """Initializes the test class."""
+        """ """
         super().__init__(*args, **kwargs)
         self.name = "Review"
         self.value = Review
+        self.review1 = Review(place_id="d80e0344-63eb-434a-b1e0-07783522124e",
+                              user_id="d81e0344-63eb-434a-b1e0-0778352212ge",
+                              text="Nice place!!!")
 
     def test_place_id(self):
-        """Tests the type of place_id."""
-        new = self.value(place_id="test_place_id")
-        expected_type = str if new.place_id is not None else type(None)
-        self.assertEqual(type(new.place_id), expected_type)
+        """ """
+        self.assertEqual(type(self.review1.place_id), str)
 
     def test_user_id(self):
-        """Tests the type of user_id."""
-        new = self.value(user_id="test_user_id")
-        expected_type = str if new.user_id is not None else type(None)
-        self.assertEqual(type(new.user_id), expected_type)
+        """ """
+        self.assertEqual(type(self.review1.user_id), str)
 
     def test_text(self):
-        """Tests the type of text."""
-        new = self.value(text="This is a review text")
-        expected_type = str if new.text is not None else type(None)
-        self.assertEqual(type(new.text), expected_type)
-
+        """ """
+        self.assertEqual(type(self.review1.text), str)

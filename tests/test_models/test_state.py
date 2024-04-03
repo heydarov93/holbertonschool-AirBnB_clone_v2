@@ -1,21 +1,19 @@
 #!/usr/bin/python3
 """ """
-import os
-
 from tests.test_models.test_base_model import test_basemodel
 from models.state import State
 
 
-class TestState(test_basemodel):
-    """Represents the tests for the State model."""
+class test_state(test_basemodel):
+    """ """
+
     def __init__(self, *args, **kwargs):
-        """Initializes the test class."""
+        """ """
         super().__init__(*args, **kwargs)
         self.name = "State"
         self.value = State
+        self.state1 = State(name="Absheron")
 
     def test_name3(self):
-        """Tests the type of name."""
-        new = self.value(name="California")
-        expected_type = str if new.name is not None else type(None)
-        self.assertEqual(type(new.name), expected_type)
+        """ """
+        self.assertEqual(type(self.state1.name), str)

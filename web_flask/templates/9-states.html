@@ -8,14 +8,14 @@
 	<H1>State: {{ single_state.name }}</H1>
 	<H3>Cities:</H3>
 	<UL>
-		{% city in single_state.cities | sort(attribute="name") %}
+		{% for city in single_state.cities | sort(attribute="name") %}
 		<LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
 		{% endfor %}
 	</UL>
 	{% else %}
 	<H1>States</H1>
         <UL>
-		{% state in states | sort(attribute="name" %}
+		{% for state in states | sort(attribute="name") %}
 		<LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
 		{% endfor %}
 	</UL>

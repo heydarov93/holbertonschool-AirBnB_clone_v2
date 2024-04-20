@@ -11,25 +11,29 @@ app.url_map.strict_slashes = False
 
 
 @app.route("/states")
-@app.route("/states/<uuid:id>")
-def to_states(id):
+@app.route("/states/<id>")
+def to_states(id=None):
     """
     Fetchs states and cities by id
     then renders html page with that data
     """
     states_tmp = storage.all(State)
     state_by_id = None
-    states = []
+    states = None
 
     if id:
-        state = states_tmp[f"State.{id}"]
-        state_by_id = state
+        try:
+            state = states_tmp[f"State.{id}"]
+            state_by_id = state
+        except KeyError:
+            pass
     else:
+        states = []
         for obj in states_tmp.values():
             states.append(obj)
 
     return render_template(
-                            "8-cities_by_states.html",
+                            "9-states.html",
                             states=states,
                             single_state=state_by_id
                           )
